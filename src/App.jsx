@@ -17,15 +17,76 @@ function App() {
     console.log("soy clickConsole, este es mi mensaje: ", mensaje);
   }
 
+  const personas = [
+    {
+      name: "Bruno",
+      lastName: "Diaz",
+      edad: 35,
+      behavior: null,
+    },
+    {
+      name: "Diego",
+      lastName: null,
+      edad: null,
+      behavior: clickConsole,
+    },
+    {
+      name: "Renato",
+      lastName: "Perez",
+      edad: 15,
+      behavior: null,
+    },
+    {
+      name: "Santiago",
+      lastName: null,
+      edad: null,
+      behavior: null,
+    },
+    {
+      name: "Fernando",
+      lastName: null,
+      edad: null,
+      behavior: clickConsole,
+    },
+    {
+      name: "Isabel",
+      lastName: null,
+      edad: null,
+      behavior: clickConsole,
+    },
+  ]
+
+  function agregarPersona() {
+    personas.push({
+      name: "Nuevo",
+      lastName: "Contacto",
+      edad: 20,
+      behavior: clickConsole,
+    })
+
+    console.log(personas);
+  }
+
   return (
     <>
       <h1>Contact Manager</h1>
       <h2>Aplicación para gestionar contactos</h2>
-      <Card name="Bruno" lastName="Diaz" edad={35} />
-      <Card name="Diego" clickBehavior={clickConsole} />
-      <Card name="Renato" lastName="Perez" edad={15} />
-      <Card name="Santiago" />
-      <Card name="Fernando" clickBehavior={clickConsole} />
+
+      <button onClick={agregarPersona}>Agregar Persona</button>
+
+      {/* Renderizar múltiples Card con map */}
+      {/* Cuando utilizas map para renderizar múltiples elementos, es OBLIGATORIO asignar una key a cada componente */}
+      {/* --> Para esto, se utiliza el índice del array como key */}
+      {personas.map((persona, index) => (
+        <Card 
+          key={index}
+          name={persona.name}
+          lastName={persona.lastName}
+          edad={persona.edad}
+          clickBehavior={persona.behavior}
+        />
+      ))}
+
     </>
   )
 }
