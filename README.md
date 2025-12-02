@@ -1,16 +1,67 @@
-# React + Vite
+# Contact Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación educativa para gestionar contactos en la web. Proyecto desarrollado durante el curso; sirve como laboratorio para aprender React + Vite y buenas prácticas básicas (estado, props, composición de componentes).
 
-Currently, two official plugins are available:
+## Stack
+- Node
+- Vite
+- React
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Instalación (rápida)
+- Instalar dependencias con `npm install`.
+- Ejecutar entorno de desarrollo con `npm run dev`.
 
-## React Compiler
+## Uso / Desarrollo
+- Abrir el proyecto en tu editor y editar los componentes en `src/`.
+- Archivo principal: `src/App.jsx`. Componentes auxiliares: `src/card-contact.jsx`, `src/main.jsx`.
+- Para construir: `npm run build`. Para previsualizar el build: `npm run preview`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Estructura del proyecto (resumen)
+- `index.html` — documento HTML de entrada.
+- `src/main.jsx` — punto de montaje de React.
+- `src/App.jsx` — componente principal de la aplicación.
+- `src/card-contact.jsx` — componente para la tarjeta de cada contacto.
+- `src/` — aquí también están `App.css`, `index.css` y `assets/`.
+- `vite.config.js` — configuración de Vite.
 
-## Expanding the ESLint configuration
+## Funcionalidades implementadas (estado actual)
+- Renderizado de una lista de contactos definida en el código.
+- Tarjeta de contacto con contador interno (cada tarjeta usa `useState` para un contador local).
+- Estilos básicos y layout aplicados vía CSS.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Estado actual — Resumen objetivo
+- La app está en estado de prototipo/ejercicio: UI y componentes base creados, lógica de interacción básica presente en métodos y botones, pero faltan mejoras clave (persistencia, estado compartido para la lista, eliminación/edición real, tests).
+
+## CHANGELOG (por número de clase)
+### Clase 03
+- [LEARN] Uso de `useState` para estados locales (contador en `card-contact`).
+- [LEARN] Uso del spread operator para clonar/propagar objetos y props.
+- [TASK] Planeado: migrar la lista de contactos a estado en `App.jsx` para permitir agregar/eliminar (pendiente).
+- [TASK] Planeado: implementar eliminación con `filter` y usar IDs únicos por contacto (pendiente).
+
+### Clase 02
+- [SETUP] Inicialización del proyecto con Vite + React.
+- [STRUCTURE] Creación de componentes base (`App.jsx`, `card-contact.jsx`) y configuración de estilos.
+
+### Clase 01
+- [BOOT] Configuración inicial del repositorio y dependencias básicas.
+
+## TODO / Roadmap (priorizado)
+1. **Mover lista de contactos a estado** en `App.jsx` usando `useState` y `setPersonas(prev => [...prev, nuevo])`.
+2. **Implementar agregar/eliminar**: formulario para añadir y `filter` por `id` para eliminar.
+3. **Asignar IDs únicos** a cada contacto (ej. `crypto.randomUUID()` o `Date.now()`).
+4. **Persistencia opcional**: guardar/restaurar contactos desde `localStorage` o backend.
+5. **Calidad**: limpiar comentarios de aula, añadir validaciones mínimas y tests (Jest + React Testing Library).
+
+## Cómo contribuir
+- Crea una rama por feature: `feature/<breve-descripción>`.
+- Abre un PR hacia `main` con descripción y referencia a la clase correspondiente.
+- Añade pruebas básicas si introduces lógica no trivial.
+
+## Licencia
+- No se ha definido una licencia en el repositorio. Añade un archivo `LICENSE` si quieres publicar el código con una licencia clara.
+
+---
+
+Si quieres, puedo ajustar el tono (más técnico o más didáctico), añadir ejemplos puntuales de implementación (por ejemplo, cómo migrar la lista a `useState`) o generar el diff para aplicar otras mejoras. Dime qué prefieres revisar primero.
+
