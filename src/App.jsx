@@ -1,5 +1,11 @@
-import './App.css' // importar un modulo es estilos.
-import Card from "./card-contact";
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './pages/home-page';
+import AboutPage from './pages/about-page';
+import Header from './components/header';
+import ContactDetailPage from './pages/contact-detail-page';
+import NotFoundPage from './pages/not-found-page';
+
+import { useState } from 'react';
 
 // Cómo escribir un componente React:
 // 1. es una funcion constructora -> nombre de función con primera letra en mayúscula SIEMPRE.
@@ -11,82 +17,44 @@ import Card from "./card-contact";
 //    - Atributo class (indicar clasificación) en JSX es className !IMPORTANTE
 
 
+function NewContactPage() {
+    return (
+        <main className="pt-12 max-w-md mx-auto p-4">
+            <h1 className="text-5xl font-black mb-4">New Contact Page</h1>
+            <h2 className="text-3xl font-bold mb-2">Aquí podrás crear un nuevo contacto</h2>
+        </main>
+    )
+}
+
+
 function App() {
 
-  function clickConsole(mensaje) {
-    console.log("soy clickConsole, este es mi mensaje: ", mensaje);
+  const [contadorApp, setContadorApp] = useState(0);
+
+  function incrementarContador() {
+    setContadorApp(contadorApp + 1);
   }
 
-  const personas = [
-    {
-      name: "Bruno",
-      lastName: "Diaz",
-      edad: 35,
-      behavior: null,
-    },
-    {
-      name: "Diego",
-      lastName: null,
-      edad: null,
-      behavior: clickConsole,
-    },
-    {
-      name: "Renato",
-      lastName: "Perez",
-      edad: 15,
-      behavior: null,
-    },
-    {
-      name: "Santiago",
-      lastName: null,
-      edad: null,
-      behavior: null,
-    },
-    {
-      name: "Fernando",
-      lastName: null,
-      edad: null,
-      behavior: clickConsole,
-    },
-    {
-      name: "Isabel",
-      lastName: null,
-      edad: null,
-      behavior: clickConsole,
-    },
-  ]
-
-  function agregarPersona() {
-    personas.push({
-      name: "Nuevo",
-      lastName: "Contacto",
-      edad: 20,
-      behavior: clickConsole,
-    })
-
-    console.log(personas);
-  }
+  const [favoriteContact, setFavoriteContact] = useState("Bruno");
 
   return (
     <>
-      <h1>Contact Manager</h1>
-      <h2>Aplicación para gestionar contactos</h2>
+      <Header favoriteContact={favoriteContact} />
 
-      <button onClick={agregarPersona}>Agregar Persona</button>
-
-      {/* Renderizar múltiples Card con map */}
-      {/* Cuando utilizas map para renderizar múltiples elementos, es OBLIGATORIO asignar una key a cada componente */}
-      {/* --> Para esto, se utiliza el índice del array como key */}
-      {personas.map((persona, index) => (
-        <Card 
-          key={index}
-          name={persona.name}
-          lastName={persona.lastName}
-          edad={persona.edad}
-          clickBehavior={persona.behavior}
-        />
-      ))}
-
+      <div className="pt-24 w-fit mx-auto">
+        <p className='text-xl text-center mb-6'>Contador: {contadorApp}</p>
+        <button className='p-4 rounded bg-black text-xl text-white' onClick={incrementarContador}>Contador App: {contadorApp}</button>
+      </div>
+      
+      <Routes>
+        <Route path="/" element={<HomePage setFavoriteContact={setFavoriteContact} />} />
+        <Route path="/about" element={<AboutPage aumentarContador={incrementarContador} />} />
+        <Route path="/new-contact" element={<NewContactPage />} />
+        {/* Ruta Dinámica Estricta: */}
+        <Route path="/contact/:name/:years?" element={<ContactDetailPage />} />
+        {/* 404 */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </>
   )
 }

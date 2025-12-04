@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // Funciones reciben "parámetros".
 // A las funciones les envías "argumentos".
@@ -33,15 +34,17 @@ export default function Card(props) {
 
     // Después de la lógica, recién construyes el JSX:
     return (
-        <div style={{ display: 'flex', gap: 10, justifyContent: "space-between", alignItems: "center", border: "3px solid white", borderRadius: 10, padding: 10, marginTop: 20}}>
+        <div className="flex justify-between items-center border border-black/30 bg-white/40 rounded-2xl p-6 mt-5">
             <div>
                 <h3>Contacto: {props.name}</h3>
                 {!menorEdad && (<h3>Apellido: {props.lastName}</h3>)}
                 {props.edad && (<h3>Edad: {props.edad}</h3>)}
             </div>
             <div>
-                <button onClick={() => props.clickBehavior && props.clickBehavior(props.name)}>Click Behavior</button>
-                <button onClick={aumentarContador}>Contador: {contador}</button>
+                <button className="p-2 border rounded cursor-pointer hover:bg-teal-300" onClick={() => props.clickBehavior && props.clickBehavior(props.name)}>Click Behavior</button>
+                <button className="p-2 border rounded cursor-pointer hover:bg-cyan-300" onClick={aumentarContador}>Contador: {contador}</button>
+                <button className="p-2 border rounded cursor-pointer hover:bg-pink-300" onClick={() => props.setFavoriteContact(props.name)}>Favorite Contact</button>
+                <Link to={`/contact/${props.name}/${props.edad ?? ''}`} className="p-2 border rounded cursor-pointer hover:bg-amber-300">Detalle</Link>
             </div>
         </div>
     )
