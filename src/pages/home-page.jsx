@@ -1,30 +1,23 @@
 import { useState, useEffect } from "react";
+import { fetchContacts } from "../services/contacts";
 
 import Card from "../card-contact";
 
-const API_URL = import.meta.env.VITE_API_URL;
-
-export default function HomePage(props) {
+export default function HomePage() {
 
     const [loading, setLoading] = useState(false); // Estado para indicar si la carga está en progreso
     const [contacts, setContacts] = useState([]); // Estado para almacenar los contactos obtenidos de la API
 
     useEffect(() => {
         // Inicio lógica useEffect:
-        async function fetchContacts() {
-            setLoading(true); // Indica que la carga ha comenzado
-            try {
-                const response = await fetch(`${API_URL}`);
-                const data = await response.json();
-                setContacts(data); // Actualiza el estado con los contactos obtenidos
-            } catch (error) {
-                console.error("Error fetching contacts:", error);
-            } finally {
-                setLoading(false); // Indica que la carga ha finalizado
-            }
+        setLoading(true); // Indica que la carga ha comenzado
+        async function loadContacts() {
+            const data = await fetchContacts(); // Llama a la función para obtener los contactos
+            setContacts(data); // Actualiza el estado con los contactos obtenidos
+            setLoading(false); // Indica que la carga ha finalizado
         }
-        fetchContacts();
-        // Final lógica useEffect:
+        loadContacts();
+        // Fin lógica useEffect
     }, []);
 
     return (
