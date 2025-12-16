@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/home-page';
+import TestPage from './pages/test-page';
 import AboutPage from './pages/about-page';
 import Header from './components/header';
 import ContactDetailPage from './pages/contact-detail-page';
@@ -50,6 +51,7 @@ function App() {
         <Route path="/" element={<HomePage setFavoriteContact={setFavoriteContact} />} />
         <Route path="/about" element={<AboutPage aumentarContador={incrementarContador} />} />
         <Route path="/new-contact" element={<NewContactPage />} />
+        <Route path="/test" element={<TestPage />} />
         {/* Ruta Dinámica Estricta: */}
         <Route path="/contact/:name/:years?" element={<ContactDetailPage />} />
         {/* 404 */}

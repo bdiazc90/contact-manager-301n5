@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchContacts } from "../services/contacts";
+import { fetchContacts } from "../services/contactService";
 
 import Card from "../card-contact";
 
