@@ -20,9 +20,9 @@ import { useState } from 'react';
 
 function NewContactPage() {
     return (
-        <main className="pt-12 max-w-md mx-auto p-4">
-            <h1 className="text-5xl font-black mb-4">New Contact Page</h1>
-            <h2 className="text-3xl font-bold mb-2">Aquí podrás crear un nuevo contacto</h2>
+        <main className="pt-20 px-6 max-w-2xl mx-auto">
+            <h1 className="text-3xl font-bold text-slate-800 mb-2">Nuevo Contacto</h1>
+            <p className="text-slate-600">Aquí podrás crear un nuevo contacto</p>
         </main>
     )
 }
@@ -42,18 +42,24 @@ function App() {
     <>
       <Header favoriteContact={favoriteContact} />
 
-      <div className="pt-24 w-fit mx-auto">
-        <p className='text-xl text-center mb-6'>Contador: {contadorApp}</p>
-        <button className='p-4 rounded bg-black text-xl text-white' onClick={incrementarContador}>Contador App: {contadorApp}</button>
+      <div className="pt-20 px-6 max-w-2xl mx-auto mb-6">
+        <p className="text-sm text-slate-500 text-center mb-2">Contador: {contadorApp}</p>
+        <button
+          className="w-full px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
+          onClick={incrementarContador}
+        >
+          Contador App: {contadorApp}
+        </button>
       </div>
-      
+
       <Routes>
         <Route path="/" element={<HomePage setFavoriteContact={setFavoriteContact} />} />
         <Route path="/about" element={<AboutPage aumentarContador={incrementarContador} />} />
         <Route path="/new-contact" element={<NewContactPage />} />
+        {/* Ruta Dinámica /test recibe get y post: */}
         <Route path="/test" element={<TestPage />} />
         {/* Ruta Dinámica Estricta: */}
-        <Route path="/contact/:name/:years?" element={<ContactDetailPage />} />
+        <Route path="/contact/:id" element={<ContactDetailPage />} />
         {/* 404 */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

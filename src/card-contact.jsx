@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Funciones reciben "parámetros".
@@ -8,43 +7,17 @@ import { Link } from "react-router-dom";
 // En React, los "COMPONENTES" (funciones) reciben "props".
 
 export default function Card(props) {
-    // Los estados se DEFINEN DENTRO DEL COMPONENTE. Suelen ser las primeras líneas:
-    const [contador, setContador] = useState(0);
     
-    
-    // Lógica (DENTRO DEL COMPONENTE)
-
-    function aumentarContador() {
-        // contador += 1; // ESTO NUNCA SE DEBE HACER CUANDO USAS ESTADOS.
-        setContador(contador + 1);
-    }
-
-    // condiciones
-    // Lógica de Negocio:
-    // Si el contacto es MENOR de edad, NO DEBE APARECER SU APELLIDO.
-    // Si NO hay edad, asume que es menor.
-    let menorEdad = true;
-    if (props.edad) {
-        if (props.edad >= 18) {
-            menorEdad = false;
-        }
-    }
-
-    // Reconocer si vino la funcion clickBehavior:
 
     // Después de la lógica, recién construyes el JSX:
     return (
-        <div className="flex justify-between items-center border border-black/30 bg-white/40 rounded-2xl p-6 mt-5">
-            <div>
-                <h3>Contacto: {props.name}</h3>
-                {!menorEdad && (<h3>Apellido: {props.lastName}</h3>)}
-                {props.edad && (<h3>Edad: {props.edad}</h3>)}
+        <div className="flex justify-between items-center bg-white border border-slate-200 rounded-lg shadow-sm p-4 mt-4">
+            <div className="space-y-1">
+                <h3 className="text-base font-medium text-slate-800">Contacto: {props.fullname}</h3>
+                <h3 className="text-base font-medium text-slate-800">Numero: {props.phonenumber}</h3>
             </div>
-            <div>
-                <button className="p-2 border rounded cursor-pointer hover:bg-teal-300" onClick={() => props.clickBehavior && props.clickBehavior(props.name)}>Click Behavior</button>
-                <button className="p-2 border rounded cursor-pointer hover:bg-cyan-300" onClick={aumentarContador}>Contador: {contador}</button>
-                <button className="p-2 border rounded cursor-pointer hover:bg-pink-300" onClick={() => props.setFavoriteContact(props.name)}>Favorite Contact</button>
-                <Link to={`/contact/${props.name}/${props.edad ?? ''}`} className="p-2 border rounded cursor-pointer hover:bg-amber-300">Detalle</Link>
+            <div className="flex gap-2">
+                <Link to={`/contact/${props.id}`} className="px-3 py-1.5 text-sm text-teal-600 border border-teal-600 rounded-lg hover:bg-teal-50 transition-colors">Detalle</Link>
             </div>
         </div>
     )
