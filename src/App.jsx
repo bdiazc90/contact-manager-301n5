@@ -19,12 +19,12 @@ import { useState } from 'react';
 
 
 function NewContactPage() {
-    return (
-        <main className="pt-20 px-6 max-w-2xl mx-auto">
-            <h1 className="text-3xl font-bold text-slate-800 mb-2">Nuevo Contacto</h1>
-            <p className="text-slate-600">Aquí podrás crear un nuevo contacto</p>
-        </main>
-    )
+  return (
+    <main className="pt-20 px-6 max-w-2xl mx-auto">
+      <h1 className="text-3xl font-bold text-slate-800 mb-2">Nuevo Contacto</h1>
+      <p className="text-slate-600">Aquí podrás crear un nuevo contacto</p>
+    </main>
+  )
 }
 
 
@@ -39,7 +39,7 @@ function App() {
   const [favoriteContact, setFavoriteContact] = useState("Bruno");
 
   return (
-    <>
+    <div className='bg-linear-to-br from-cyan-100 via-teal-200 to-90% to-amber-400 min-h-screen'>
       <Header favoriteContact={favoriteContact} />
 
       <div className="pt-20 px-6 max-w-2xl mx-auto mb-6">
@@ -63,7 +63,7 @@ function App() {
         {/* 404 */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </>
+    </div>
   )
 }
 
