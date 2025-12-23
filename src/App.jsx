@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/home-page';
+import NewContactPage from './pages/new-contact-page';
 import TestPage from './pages/test-page';
 import AboutPage from './pages/about-page';
 import Header from './components/header';
@@ -16,16 +17,6 @@ import { useState } from 'react';
 //    - Atributos de valor string -> Propiedades de un objeto JS.
 //    - Atributos se pasan en camelCase (onclick="" / onClick="") (onmouseover / onMouseOver)
 //    - Atributo class (indicar clasificación) en JSX es className !IMPORTANTE
-
-
-function NewContactPage() {
-  return (
-    <main className="pt-20 px-6 max-w-2xl mx-auto">
-      <h1 className="text-3xl font-bold text-slate-800 mb-2">Nuevo Contacto</h1>
-      <p className="text-slate-600">Aquí podrás crear un nuevo contacto</p>
-    </main>
-  )
-}
 
 
 function App() {
