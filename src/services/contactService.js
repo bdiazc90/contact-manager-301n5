@@ -28,12 +28,42 @@ export async function fetchContactById(id) {
 
 export async function createContact(data) {
     try {
-        return await fetch(`${API_URL}`, {
+        const response = await fetch(`${API_URL}`, {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify(data),
         });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        return await response.json();
     } catch (error) {
         console.error("Error creating contact:", error);
-        return error;
+        throw error;
+    }
+}
+
+export async function updateContact(id, data) {
+    try {
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error updating contact:", error);
+        throw error;
     }
 }
